@@ -5,11 +5,11 @@ import 'react-dates/lib/css/_datepicker.css';
 import 'react-dates/initialize'; 
 
 const ExpenseForm = (props) => {
-    const [description, setDescription] = useState("");
-    const [note, setNote] = useState("");
-    const [amount, setAmount] = useState("");
+    const [description, setDescription] = useState(props.expense ? props.expense.description : "");
+    const [note, setNote] = useState(props.expense ? props.expense.note : "");
+    const [amount, setAmount] = useState(props.expense ? (props.expense.amount / 100).toString() : "");
     //Using moment.js to use for dates, because the Date() API is a piece hot garbage
-    const [createdAt, setCreatedAt] = useState(moment());
+    const [createdAt, setCreatedAt] = useState(props.expense ? moment(props.expense.createdAt) : moment());
     const [focused, setFocused] = useState(false);
     const [error, setError] = useState("");
 
@@ -44,7 +44,6 @@ const ExpenseForm = (props) => {
             setError("The description and amount fields can't be empty.");
         } else {
             setError("");
-            console.log("Submitted");
             props.onSubmit({
                 description,
                 amount: parseFloat(amount, 10) * 100,
@@ -85,7 +84,7 @@ const ExpenseForm = (props) => {
                     onChange={onNoteChange}
                 >
                 </textarea>
-                <button>Add expense</button>
+                <button>Submit expense</button>
             </form>
             {error ? (
                 <p>{error}</p>
