@@ -12,15 +12,21 @@ const store = configureStore();
 
 store.dispatch(addExpense({
     description: 'Water bill',
-    amount: 2000
+    amount: 20000,
+    createdAt: 45999
+}));
+
+store.dispatch(addExpense({
+    description: 'Rent',
+    amount: 2239,
+    createdAt: 1000
 }));
 
 store.dispatch(addExpense({
     description: 'Gass bill',
-    amount: 4500
+    amount: 4500,
+    createdAt: 2882
 }));
-
-store.dispatch(setTextFilter('Bill'));
 
 const jsx = (
     <Provider store={store}>
