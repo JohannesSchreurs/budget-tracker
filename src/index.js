@@ -13,19 +13,22 @@ const store = configureStore();
 store.dispatch(addExpense({
     description: 'Water bill',
     amount: 20000,
-    createdAt: 45999
+    createdAt: 45999,
+    id: 1
 }));
 
 store.dispatch(addExpense({
     description: 'Rent',
     amount: 2239,
-    createdAt: 1000
+    createdAt: 1000,
+    id: 2
 }));
 
 store.dispatch(addExpense({
     description: 'Gass bill',
     amount: 4500,
-    createdAt: 2882
+    createdAt: 2882,
+    id:3
 }));
 
 const jsx = (
