@@ -1,15 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import numeral from 'numeral';
+import moment from 'moment';
 
 const ExpenseListItem = ({dispatch, id, description, amount, createdAt}) => (
-    <ul>
+    <div>
         <Link to={`/edit/${id}`}>
-            <li>Name: { description }</li>
+            <h3>{description}</h3>
         </Link>
-        <li>Amount: { amount }</li>
-        <li>Created at: { createdAt }</li>
-    </ul>
+        <p>
+            {numeral(amount / 100).format('$0,0.00')}
+            -
+            {moment(createdAt).format('MMM Do, YYYY')}
+        </p>
+    </div>
 )
 
 
