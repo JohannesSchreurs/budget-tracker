@@ -6,7 +6,6 @@ import 'react-dates/lib/css/_datepicker.css';
 import 'react-dates/initialize'; 
 
 const ExpenseListFilter = (props) => {
-
     const [calenderFocused, setCalenderFocused] = useState(null);
 
     const onDatesChange = ({startDate, endDate}) => {

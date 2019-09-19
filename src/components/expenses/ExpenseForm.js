@@ -84,7 +84,7 @@ const ExpenseForm = (props) => {
                     onChange={onNoteChange}
                 >
                 </textarea>
-                <button>Submit expense</button>
+                <button>{props.expense ? "Update expense" : "Create expense"}</button>
             </form>
             {error ? (
                 <p>{error}</p>
