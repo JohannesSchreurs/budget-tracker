@@ -6,30 +6,31 @@ import './styles/styles.scss';
 import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import { addExpense } from './actions/expenses';
+import { startSetExpenses } from './actions/expenses';
 import './firebase/firebase';
 
 const store = configureStore();
 
-store.dispatch(addExpense({
-    description: 'Water bill',
-    amount: 20000,
-    createdAt: 45999,
-    id: 1
-}));
+// store.dispatch(addExpense({
+//     description: 'Water bill',
+//     amount: 20000,
+//     createdAt: 45999,
+//     id: 1
+// }));
 
-store.dispatch(addExpense({
-    description: 'Rent',
-    amount: 2239,
-    createdAt: 1000,
-    id: 2
-}));
+// store.dispatch(addExpense({
+//     description: 'Rent',
+//     amount: 2239,
+//     createdAt: 1000,
+//     id: 2
+// }));
 
-store.dispatch(addExpense({
-    description: 'Gass bill',
-    amount: 4500,
-    createdAt: 2882,
-    id:3
-}));
+// store.dispatch(addExpense({
+//     description: 'Gass bill',
+//     amount: 4500,
+//     createdAt: 2882,
+//     id:3
+// }));
 
 const jsx = (
     <Provider store={store}>
@@ -37,7 +38,12 @@ const jsx = (
     </Provider>
 )
 
-ReactDOM.render(jsx, document.getElementById('root'));
+ReactDOM.render(<p>Loading...</p>, document.getElementById('root'));
+
+store.dispatch(startSetExpenses()).then(() => {
+    ReactDOM.render(jsx, document.getElementById('root'));
+});
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
