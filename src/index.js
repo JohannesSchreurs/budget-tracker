@@ -5,32 +5,10 @@ import * as serviceWorker from './serviceWorker';
 import './styles/styles.scss';
 import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
-import { addExpense } from './actions/expenses';
 import { startSetExpenses } from './actions/expenses';
 import './firebase/firebase';
 
 const store = configureStore();
-
-// store.dispatch(addExpense({
-//     description: 'Water bill',
-//     amount: 20000,
-//     createdAt: 45999,
-//     id: 1
-// }));
-
-// store.dispatch(addExpense({
-//     description: 'Rent',
-//     amount: 2239,
-//     createdAt: 1000,
-//     id: 2
-// }));
-
-// store.dispatch(addExpense({
-//     description: 'Gass bill',
-//     amount: 4500,
-//     createdAt: 2882,
-//     id:3
-// }));
 
 const jsx = (
     <Provider store={store}>
