@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import './styles/styles.scss';
-import AppRouter from './routers/AppRouter';
+import AppRouter, { history } from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import { startSetExpenses } from './actions/expenses';
-import './firebase/firebase';
+import { firebase } from './firebase/firebase';
 
 const store = configureStore();
 
@@ -16,10 +16,30 @@ const jsx = (
     </Provider>
 )
 
+let hasRendered = false;
+
+const renderApp = () => {
+    if(!hasRendered) {
+        ReactDOM.render(jsx, document.getElementById('root'));
+        hasRendered = true;
+    }
+}
+
 ReactDOM.render(<p>Loading...</p>, document.getElementById('root'));
 
-store.dispatch(startSetExpenses()).then(() => {
-    ReactDOM.render(jsx, document.getElementById('root'));
+firebase.auth().onAuthStateChanged((user) => {
+    if(user) {
+        console.log("Logged in as " + user.displayName);
+        store.dispatch(startSetExpenses()).then(() => {
+            renderApp();
+            if(history.location.pathname === '/') {
+                history.push('/dashboard');
+            }
+        });
+    } else {
+        renderApp();
+        history.push("/");
+    }
 });
 
 
